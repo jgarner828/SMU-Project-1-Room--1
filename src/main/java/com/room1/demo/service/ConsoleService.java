@@ -15,12 +15,15 @@ import java.util.Optional;
 
 @Service
 public class ConsoleService {
+
+    @Autowired
     private ConsoleRepository consoleRepository;
+
+    @Autowired
     private GameRepository gameRepository;
 
 
     @Autowired
-
     public ConsoleService(ConsoleRepository consoleRepository) {
         this.consoleRepository = consoleRepository;
     }
@@ -47,9 +50,8 @@ public class ConsoleService {
 
     }
 
-    public ConsoleViewModel findConsole(int id) {
+    public ConsoleViewModel findConsoleById(int id) {
 
-        // Get the album object first
         Optional<Console> console = consoleRepository.findById(id);
 
         return console.isPresent() ? buildConsoleViewModel(console.get()) : null;

@@ -23,7 +23,7 @@ public class ConsoleController {
 
     @GetMapping("/consoles/{id}")
     public ConsoleViewModel getConsoleById(@PathVariable int id) {
-        return consoleService.findConsole(id);
+        return consoleService.findConsoleById(id);
     }
 
     @PostMapping("/consoles")
