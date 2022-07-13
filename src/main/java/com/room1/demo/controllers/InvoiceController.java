@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-public class InvoiceController {
+//@RestController
+//public class InvoiceController {
+//
+//    @Autowired
+//    InvoiceService invoiceService;
 
-    @Autowired
-    InvoiceService invoiceService;
-
-    @GetMapping("/invoice")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Invoice> getAllInvoices() {
-        invoiceService
-    }
-}
+//    @GetMapping("/invoice")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<Invoice> getAllInvoices() {
+//        invoiceService
+//    }
+//}
