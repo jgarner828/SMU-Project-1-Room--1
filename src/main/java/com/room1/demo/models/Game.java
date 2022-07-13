@@ -28,8 +28,8 @@ public class Game {
     private String description;
 
     @NotEmpty
-    private double price;
 
+   private double price;
     @NotEmpty
     @Length(max = 50, min = 1)
     private String studio;

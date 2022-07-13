@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
@@ -30,14 +31,14 @@ public class Console {
     private String processor;
 
     @NotEmpty
-    private double price;
+    private BigDecimal price;
 
     @NotEmpty
     private int quantity;
 
     public Console() {}
 
-    public Console(int consoleId, String model, String manufacturer, String memoryAmount, String processor, double price, int quantity) {
+    public Console(int consoleId, String model, String manufacturer, String memoryAmount, String processor, BigDecimal price, int quantity) {
         this.consoleId = consoleId;
         this.model = model;
         this.manufacturer = manufacturer;
@@ -87,11 +88,11 @@ public class Console {
         this.processor = processor;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -103,12 +104,13 @@ public class Console {
         this.quantity = quantity;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Console console = (Console) o;
-        return consoleId == console.consoleId && Double.compare(console.price, price) == 0 && quantity == console.quantity && Objects.equals(model, console.model) && Objects.equals(manufacturer, console.manufacturer) && Objects.equals(memoryAmount, console.memoryAmount) && Objects.equals(processor, console.processor);
+        return consoleId == console.consoleId && quantity == console.quantity && Objects.equals(model, console.model) && Objects.equals(manufacturer, console.manufacturer) && Objects.equals(memoryAmount, console.memoryAmount) && Objects.equals(processor, console.processor) && Objects.equals(price, console.price);
     }
 
     @Override
