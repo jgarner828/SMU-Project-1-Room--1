@@ -1,3 +1,4 @@
+
 drop schema if exists game_store;
 create schema if not exists game_store;
 use game_store;
@@ -120,3 +121,4 @@ insert into processing_fee (product_type, fee) values
 ('Consoles', 14.99),
 ('T-Shirts', 1.98),
 ('Games', 1.49);
+
