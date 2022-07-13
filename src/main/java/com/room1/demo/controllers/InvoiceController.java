@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
-public class InvoiceController {
+   @RestController
+   public class InvoiceController {
+   @Autowired   
+   InvoiceService invoiceService;
+
 
     @Autowired
     InvoiceService invoiceService;
@@ -37,3 +40,4 @@ public class InvoiceController {
 
 
 }
+
