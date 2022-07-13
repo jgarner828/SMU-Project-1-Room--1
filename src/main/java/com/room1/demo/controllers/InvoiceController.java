@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,10 +25,10 @@ public class InvoiceController {
 
     @PostMapping("/invoices")
     @ResponseStatus(HttpStatus.CREATED)
-    public InvoiceViewModel addInvoice(@RequestBody InvoiceViewModel viewModel) { return invoiceService.saveInvoice(viewModel);}
+    public InvoiceViewModel addInvoice(@RequestBody @Valid InvoiceViewModel viewModel) { return invoiceService.saveInvoice(viewModel);}
 
     @PutMapping("/invoices")
-    public void updateInvoice(@RequestBody InvoiceViewModel viewModel) { invoiceService.updateInvoice(viewModel); }
+    public void updateInvoice(@RequestBody @Valid InvoiceViewModel viewModel) { invoiceService.updateInvoice(viewModel); }
 
     @DeleteMapping("/invoices/{id}")
     public void deleteInvoice(@PathVariable int id) { invoiceService.removeInvoice(id); }

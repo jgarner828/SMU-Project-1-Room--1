@@ -11,11 +11,11 @@ import java.util.List;
 @RestController
 public class ProcessingFeeController {
 
-    @GetMapping("/processingfees")
-    @ResponseStatus(HttpStatus.OK)
-    public List<ProcessingFee> getallprocessingfees() {
-
-    }
+//    @GetMapping("/processingfees")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<ProcessingFee> getallprocessingfees() {
+//
+//    }
 
 
 }

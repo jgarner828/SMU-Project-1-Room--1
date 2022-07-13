@@ -75,7 +75,29 @@ public class ShirtService {
         shirtRepository.deleteById(id);
     }
 
-    private ShirtViewModel buildShirtViewModel(Shirt shirt) {
+    public List<ShirtViewModel> findAllShirtsByColor(String color){
+        List<Shirt> shirtList = shirtRepository.findAllShirtsByColor(color);
+        List<ShirtViewModel> viewModelList = new ArrayList<>();
+        for( Shirt shirt : shirtList){
+            ShirtViewModel swm = buildShirtViewModel(shirt);
+            viewModelList.add(swm);
+        }
+       return viewModelList;
+    }
+
+    public List<ShirtViewModel> findAllShirtsBySize(String size) {
+        List<Shirt> shirtList = shirtRepository.findAllShirtsBySize(size);
+        List<ShirtViewModel> viewModelList = new ArrayList<>();
+        for (Shirt shirt : shirtList) {
+            ShirtViewModel swm = buildShirtViewModel(shirt);
+            viewModelList.add(swm);
+        }
+        return viewModelList;
+
+
+    }
+
+        private ShirtViewModel buildShirtViewModel(Shirt shirt) {
 
         ShirtViewModel ivm = new ShirtViewModel();
         ivm.setId(shirt.getId());
@@ -88,6 +110,8 @@ public class ShirtService {
         // Return the Shirt View Model
         return ivm;
     }
+
+
 
 
 }
