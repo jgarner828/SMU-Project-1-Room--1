@@ -4,12 +4,13 @@ import com.room1.demo.models.Game;
 import com.room1.demo.repositories.GameRepository;
 import com.room1.demo.viewmodel.GameViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class GameService {
     private GameRepository gameRepository;
 

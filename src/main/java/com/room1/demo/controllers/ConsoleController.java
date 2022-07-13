@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,13 +28,13 @@ public class ConsoleController {
 
     @PostMapping("/consoles")
     @ResponseStatus(HttpStatus.CREATED)
-    public ConsoleViewModel addConsole(@RequestBody ConsoleViewModel consoleviewModel) {
+    public ConsoleViewModel addConsole(@RequestBody  @Valid ConsoleViewModel consoleviewModel) {
         return consoleService.saveConsole(consoleviewModel);
     }
 
     @PutMapping("/consoles")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateConsole(@RequestBody ConsoleViewModel consoleViewModel) {
+    public void updateConsole(@RequestBody @Valid ConsoleViewModel consoleViewModel) {
         consoleService.updateConsole(consoleViewModel);
     }
 
