@@ -4,7 +4,7 @@ import com.room1.demo.models.Shirt;
 import com.room1.demo.repositories.ShirtRepository;
 import com.room1.demo.viewmodel.ShirtViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -12,9 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Component
+@Service
 public class ShirtService {
 
+    @Autowired
     private ShirtRepository shirtRepository;
 
     @Autowired
@@ -25,7 +26,6 @@ public class ShirtService {
     @Transactional
     public ShirtViewModel saveShirt(ShirtViewModel viewModel) {
         Shirt s = new Shirt();
-            s.setId(viewModel.getId());
             s.setPrice(viewModel.getPrice());
             s.setColor(viewModel.getColor());
             s.setSize(viewModel.getSize());
