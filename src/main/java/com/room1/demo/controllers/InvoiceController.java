@@ -1,24 +1,10 @@
 package com.room1.demo.controllers;
 
-import com.room1.demo.models.Invoice;
 import com.room1.demo.service.InvoiceService;
+import com.room1.demo.viewmodel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
-//@RestController
-//public class InvoiceController {
-//
-//    @Autowired
-//    InvoiceService invoiceService;
-
-//    @GetMapping("/invoice")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<Invoice> getAllInvoices() {
-//        invoiceService
-//    }
-//}

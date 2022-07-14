@@ -50,6 +50,5 @@ public class SalesTaxRateController {
     public void deleteProcessingFee(@PathVariable int id){
         salesTaxRateService.deleteSalesTaxRate(id);
     }
-
-
+    
 }

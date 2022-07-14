@@ -1,50 +1,17 @@
-package com.room1.demo.models;
+package com.room1.demo.viewmodel;
 
-import org.hibernate.validator.constraints.Length;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@Entity
-@Table(name = "t_shirt")
-public class Shirt {
+public class ShirtViewModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "t_shirt_id")
-    @PrimaryKeyJoinColumn
+
     private int id;
-
-    @NotEmpty
-    @Length(max =20)
     private String size;
-
-    @NotEmpty
-    @Length(max =20)
     private String color;
-
-    @NotEmpty
-    @Length(max =255)
     private String description;
-
-    @NotEmpty
     private BigDecimal price;
-
-    @NotEmpty
     private int quantity;
-
-    public Shirt(){}
-
-    public Shirt(int id, String size, String color, String description, BigDecimal price, int quantity) {
-        this.id = id;
-        this.size = size;
-        this.color = color;
-        this.description = description;
-        this.price = price;
-        this.quantity = quantity;
-    }
 
     public int getId() {
         return id;
@@ -98,8 +65,8 @@ public class Shirt {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Shirt shirt = (Shirt) o;
-        return id == shirt.id && quantity == shirt.quantity && Objects.equals(size, shirt.size) && Objects.equals(color, shirt.color) && Objects.equals(description, shirt.description) && Objects.equals(price, shirt.price);
+        ShirtViewModel that = (ShirtViewModel) o;
+        return id == that.id && quantity == that.quantity && Objects.equals(size, that.size) && Objects.equals(color, that.color) && Objects.equals(description, that.description) && Objects.equals(price, that.price);
     }
 
     @Override
@@ -109,7 +76,7 @@ public class Shirt {
 
     @Override
     public String toString() {
-        return "Shirt{" +
+        return "ShirtViewModel{" +
                 "id=" + id +
                 ", size='" + size + '\'' +
                 ", color='" + color + '\'' +
