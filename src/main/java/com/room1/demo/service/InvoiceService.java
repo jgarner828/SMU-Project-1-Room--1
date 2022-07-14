@@ -1,12 +1,15 @@
 package com.room1.demo.service;
 
+import com.room1.demo.models.Console;
 import com.room1.demo.models.Invoice;
-import com.room1.demo.repositories.InvoiceRepository;
+import com.room1.demo.repositories.*;
 import com.room1.demo.viewmodel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +18,18 @@ import java.util.Optional;
 @Service
 public class InvoiceService {
 
+
+
     private InvoiceRepository invoiceRepository;
+    @Autowired
+    private ConsoleRepository consoleRepository;
+    @Autowired
+    private GameRepository gameRepository;
+
+    @Autowired
+    private ProcessingFeeRepository processingFeeRepository;
+    @Autowired
+    private SalesTaxRateRepository salesTaxRateRepository;
 
     @Autowired
     public InvoiceService(InvoiceRepository invoiceRepository) {
@@ -108,6 +122,51 @@ public class InvoiceService {
 
         // Return the Invoice View Model
         return ivm;
+
+    }
+
+    public InvoiceViewModel purchaseOrder(@RequestBody InvoiceViewModel invoice){
+
+        InvoiceViewModel returnVal = new InvoiceViewModel();
+        returnVal.setItemType(invoice.getItemType());
+        returnVal.setItemId(invoice.getItemId());
+        returnVal.setQuantity(invoice.getQuantity());
+
+        if(returnVal.getItemType().equals("console")){
+
+            if(returnVal.getItemId()!= null){
+                Optional<Console> consoleReturnVal = consoleRepository.findById(returnVal.getId());
+
+                returnVal.setUnitPrice(consoleReturnVal.get().getPrice());
+
+                    if(consoleReturnVal.get().getQuantity()>= returnVal.getQuantity()){
+                        returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(consoleReturnVal.get().getPrice()));
+                        String customerState = invoice.getState();
+                        double taxRate = salesTaxRateRepository.findTaxRateByState(customerState);
+                        returnVal.setTax();
+
+                    }
+                throw new IllegalArgumentException();
+
+            }
+            throw new IllegalArgumentException();
+
+
+
+
+
+
+        }else if(invoice.getItemType()=="game"){
+            returnVal.setItemType("game");
+
+
+        }else if (invoice.getItemType()=="shirt"){
+            returnVal.setItemType("shirt");
+
+        }else {
+            System.out.println("error");//throw error
+        }
+
 
     }
 

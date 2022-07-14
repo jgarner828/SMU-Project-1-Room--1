@@ -15,8 +15,8 @@ import java.util.List;
    InvoiceService invoiceService;
 
 
-    @Autowired
-    InvoiceService invoiceService;
+//    @Autowired
+//    InvoiceService invoiceService;
 
     @GetMapping("/invoices")
     public List<InvoiceViewModel> getAllInvoices() {

@@ -15,8 +15,8 @@ public class Console {
     @Column(name = "console_id")
     private int consoleId;
 
-   // @NotEmpty
-   // @Length(max =50)
+    @NotEmpty
+    @Length(max =50)
     private String model;
 
    // @NotEmpty
@@ -27,13 +27,13 @@ public class Console {
     @Column(name = "memory_amount")
     private String memoryAmount;
 
-    //@Length(max =20)
+    @Length(max =20)
     private String processor;
 
-    //@NotEmpty
+    @NotEmpty
     private BigDecimal price;
 
-   // @NotEmpty
+   @NotEmpty
     private int quantity;
 
     public Console() {}
