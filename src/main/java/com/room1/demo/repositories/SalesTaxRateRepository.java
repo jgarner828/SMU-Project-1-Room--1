@@ -7,5 +7,7 @@ import java.util.List;
 
 @Repository
 public interface SalesTaxRateRepository extends JpaRepository<SalesTaxRate,Integer> {
+
     SalesTaxRate findAllSalesTaxRateByState(String state);
+
 }

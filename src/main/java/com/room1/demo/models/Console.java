@@ -33,6 +33,9 @@ public class Console {
     @NotEmpty
     private BigDecimal price;
 
+
+
+
     @NotEmpty
     private int quantity;
 
