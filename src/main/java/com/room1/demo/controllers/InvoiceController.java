@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+
+
 @RestController
 public class InvoiceController {
 
    @Autowired   
    InvoiceService invoiceService;
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 //    @Autowired
@@ -22,6 +25,8 @@ public class InvoiceController {
 
 =======
 >>>>>>> 7c5f714c7c76305d08664a8734c35a0f84298f7d
+=======
+>>>>>>> f7a04e393eb120c327ff760cc71310b39bedaaf3
     @GetMapping("/invoices")
     public List<InvoiceViewModel> getAllInvoices() {
         return invoiceService.findAllInvoiceViewModels();
@@ -40,8 +45,6 @@ public class InvoiceController {
     @DeleteMapping("/invoices/{id}")
     public void deleteInvoice(@PathVariable int id) { invoiceService.removeInvoice(id); }
 
-
-
-
 }
+
 
