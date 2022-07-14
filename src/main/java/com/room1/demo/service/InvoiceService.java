@@ -19,7 +19,7 @@ import java.util.Optional;
 public class InvoiceService {
 
 
-
+    @Autowired
     private InvoiceRepository invoiceRepository;
     @Autowired
     private ConsoleRepository consoleRepository;
@@ -166,6 +166,8 @@ public class InvoiceService {
         }else {
             System.out.println("error");//throw error
         }
+
+        return null;
 
 
     }

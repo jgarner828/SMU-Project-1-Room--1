@@ -19,11 +19,11 @@ public class Console {
     @Length(max =50)
     private String model;
 
-   // @NotEmpty
+    @NotEmpty
     @Length(max =50)
     private String manufacturer;
 
-   // @Length(max = 20)
+    @Length(max = 20)
     @Column(name = "memory_amount")
     private String memoryAmount;
 
@@ -33,7 +33,10 @@ public class Console {
     @NotEmpty
     private BigDecimal price;
 
-   @NotEmpty
+
+
+
+    @NotEmpty
     private int quantity;
 
     public Console() {}

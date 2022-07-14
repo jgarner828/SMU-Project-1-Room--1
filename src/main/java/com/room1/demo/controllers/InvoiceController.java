@@ -9,15 +9,19 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-   @RestController
-   public class InvoiceController {
+@RestController
+public class InvoiceController {
+
    @Autowired   
    InvoiceService invoiceService;
 
 
+<<<<<<< HEAD
 //    @Autowired
 //    InvoiceService invoiceService;
 
+=======
+>>>>>>> 7c5f714c7c76305d08664a8734c35a0f84298f7d
     @GetMapping("/invoices")
     public List<InvoiceViewModel> getAllInvoices() {
         return invoiceService.findAllInvoiceViewModels();
