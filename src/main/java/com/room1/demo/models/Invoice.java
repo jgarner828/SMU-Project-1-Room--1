@@ -52,17 +52,17 @@ public class Invoice {
     @NotEmpty
     private int quantity;
 
-    @NotEmpty
+  //  @NotEmpty
     private BigDecimal subtotal;
 
-    @NotEmpty
+    //@NotEmpty
     private BigDecimal tax;
 
-    @NotEmpty
+   // @NotEmpty
     @Column(name = "processing_fee")
     private BigDecimal processingFee;
 
-    @NotEmpty
+   // @NotEmpty
     private BigDecimal total;
 
     public Invoice(){}

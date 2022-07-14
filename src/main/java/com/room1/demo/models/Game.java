@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
@@ -28,7 +29,7 @@ public class Game {
     private String description;
 
     @NotEmpty
-   private double price;
+   private BigDecimal price;
 
     @NotEmpty
     @Length(max = 50, min = 1)
@@ -39,7 +40,7 @@ public class Game {
 
     public Game(){}
 
-    public Game(int gameId, String title, int esrbRating, String description, double price, String studio, int quantity) {
+    public Game(int gameId, String title, int esrbRating, String description, BigDecimal price, String studio, int quantity) {
         this.gameId = gameId;
         this.title = title;
         this.esrbRating = esrbRating;
@@ -81,11 +82,11 @@ public class Game {
         this.description = description;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -110,24 +111,11 @@ public class Game {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return gameId == game.gameId && esrbRating == game.esrbRating && Double.compare(game.price, price) == 0 && quantity == game.quantity && Objects.equals(title, game.title) && Objects.equals(description, game.description) && Objects.equals(studio, game.studio);
+        return gameId == game.gameId && esrbRating == game.esrbRating && quantity == game.quantity && Objects.equals(title, game.title) && Objects.equals(description, game.description) && Objects.equals(price, game.price) && Objects.equals(studio, game.studio);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(gameId, title, esrbRating, description, price, studio, quantity);
-    }
-
-    @Override
-    public String toString() {
-        return "Game{" +
-                "gameId=" + gameId +
-                ", title='" + title + '\'' +
-                ", esrbRating=" + esrbRating +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", studio='" + studio + '\'' +
-                ", quantity=" + quantity +
-                '}';
     }
 }

@@ -17,16 +17,7 @@ public class InvoiceController {
    @Autowired   
    InvoiceService invoiceService;
 
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-//    @Autowired
-//    InvoiceService invoiceService;
-
-=======
->>>>>>> 7c5f714c7c76305d08664a8734c35a0f84298f7d
-=======
->>>>>>> f7a04e393eb120c327ff760cc71310b39bedaaf3
     @GetMapping("/invoices")
     public List<InvoiceViewModel> getAllInvoices() {
         return invoiceService.findAllInvoiceViewModels();
