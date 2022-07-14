@@ -26,8 +26,8 @@ public class SalesTaxRateController {
 
     @GetMapping("/salestaxrate/state/{state}")
     @ResponseStatus(HttpStatus.OK)
-    public List<SalesTaxRate> getAllSalesTaxRateByState(@PathVariable @Valid String state){
-        return salesTaxRateService.getAllSalesTaxRateByState(state);
+    public SalesTaxRate getSalesTaxRateByState(@PathVariable @Valid String state){
+        return salesTaxRateService.getSalesTaxRateByState(state);
     }
 
     @PostMapping("/salestaxrate")
