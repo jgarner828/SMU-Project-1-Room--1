@@ -26,6 +26,23 @@ public class GameController {
         return gameService.findGame(id);
     }
 
+    @GetMapping("/games/{studio}")
+    public List<Game> findGamesByStudio(@PathVariable String studio) {
+        return gameService.findGamesByStudio(studio);
+    }
+
+    @GetMapping("/games/{esrb}")
+    public List<Game> findGamesByEsrbRating(@PathVariable String esrb) {
+        return gameService.findGamesByStudio(esrb);
+    }
+
+    @GetMapping("/games/{title}")
+    public List<Game> findGamesByTitle(@PathVariable String title) {
+        return gameService.findGamesByStudio(title);
+    }
+
+
+
     @PostMapping("/games")
     @ResponseStatus(HttpStatus.CREATED)
     public Game addGame(@RequestBody @Valid Game game) {
