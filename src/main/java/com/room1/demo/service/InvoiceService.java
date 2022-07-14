@@ -103,7 +103,7 @@ public class InvoiceService {
         invoiceRepository.save(i);
 
     }
-
+    @Transactional
     public void removeInvoice(int id) {
         invoiceRepository.deleteById(id);
     }
@@ -129,7 +129,7 @@ public class InvoiceService {
         return ivm;
 
     }
-
+    @Transactional
     public InvoiceViewModel purchaseOrder(@RequestBody InvoiceViewModel invoice) {
 
         InvoiceViewModel returnVal = new InvoiceViewModel();
@@ -139,8 +139,9 @@ public class InvoiceService {
 
         if (returnVal.getItemType().equals("console")) {
 
-            if (returnVal.getItemId() != null) {
+            if (returnVal.getItemId()!= 0) {
                 Optional<Console> consoleReturnVal = consoleRepository.findById(returnVal.getId());
+//                returnVal.setItemId(consoleReturnVal.get().getConsoleId());
 
                 returnVal.setUnitPrice(consoleReturnVal.get().getPrice());
 
@@ -161,7 +162,7 @@ public class InvoiceService {
 
         } else if (invoice.getItemType().equals("game")) {
             returnVal.setItemType("game");
-            if (returnVal.getItemId() != null) {
+            if (returnVal.getItemId() != 0) {
                 Optional<Game> gameReturnVal = gameRepository.findById(returnVal.getId());
 
                 returnVal.setUnitPrice(gameReturnVal.get().getPrice());
@@ -184,7 +185,7 @@ public class InvoiceService {
         } else if (invoice.getItemType() == "shirt") {
             returnVal.setItemType("shirt");
 
-            if (returnVal.getItemId() != null) {
+            if (returnVal.getItemId() != 0) {
                 Optional<Shirt> shirtReturnVal = shirtRepository.findById(returnVal.getId());
 
                 returnVal.setUnitPrice(shirtReturnVal.get().getPrice());

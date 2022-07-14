@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -41,33 +42,33 @@ public class Invoice {
     @Column(name = "item_type")
     private String itemType;
 
-    @NotEmpty
+    @NotNull
     @Column(name = "item_id")
-    private String itemId;
+    private int itemId;
 
-    @NotEmpty
+    @NotNull
     @Column(name = "unit_price")
     private BigDecimal unitPrice;
 
-    @NotEmpty
+    @NotNull
     private int quantity;
 
-  //  @NotEmpty
+   @NotNull
     private BigDecimal subtotal;
 
-    //@NotEmpty
+    @NotNull
     private BigDecimal tax;
 
-   // @NotEmpty
+    @NotNull
     @Column(name = "processing_fee")
     private BigDecimal processingFee;
 
-   // @NotEmpty
+   @NotNull
     private BigDecimal total;
 
     public Invoice(){}
 
-    public Invoice(int invoiceId, String name, String street, String city, String state, String zipcode, String itemType, String itemId, BigDecimal unitPrice, int quantity, BigDecimal subtotal, BigDecimal tax, BigDecimal processingFee, BigDecimal total) {
+    public Invoice(int invoiceId, String name, String street, String city, String state, String zipcode, String itemType, int itemId, BigDecimal unitPrice, int quantity, BigDecimal subtotal, BigDecimal tax, BigDecimal processingFee, BigDecimal total) {
         this.invoiceId = invoiceId;
         this.name = name;
         this.street = street;
@@ -82,6 +83,18 @@ public class Invoice {
         this.tax = tax;
         this.processingFee = processingFee;
         this.total = total;
+    }
+
+    public Invoice(String name, String street, String city, String state, String zipcode, String itemType, BigDecimal unitPrice, int quantity) {
+
+        this.name = name;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zipcode = zipcode;
+        this.itemType = itemType;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
     }
 
     public int getInvoiceId() {
@@ -140,11 +153,11 @@ public class Invoice {
         this.itemType = itemType;
     }
 
-    public String getItemId() {
+    public int getItemId() {
         return itemId;
     }
 
-    public void setItemId(String itemId) {
+    public void setItemId(int itemId) {
         this.itemId = itemId;
     }
 
@@ -207,25 +220,5 @@ public class Invoice {
     @Override
     public int hashCode() {
         return Objects.hash(invoiceId, name, street, city, state, zipcode, itemType, itemId, unitPrice, quantity, subtotal, tax, processingFee, total);
-    }
-
-    @Override
-    public String toString() {
-        return "Invoice{" +
-                "invoiceId=" + invoiceId +
-                ", name='" + name + '\'' +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipcode='" + zipcode + '\'' +
-                ", itemType='" + itemType + '\'' +
-                ", itemId='" + itemId + '\'' +
-                ", unitPrice=" + unitPrice +
-                ", quantity=" + quantity +
-                ", subtotal=" + subtotal +
-                ", tax=" + tax +
-                ", processingFee=" + processingFee +
-                ", total=" + total +
-                '}';
     }
 }
