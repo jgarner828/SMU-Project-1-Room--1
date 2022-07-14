@@ -4,13 +4,14 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
 public class Game {
 
-    @NotEmpty
+    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "game_id")
@@ -19,7 +20,7 @@ public class Game {
     @NotEmpty
     private String title;
 
-    @NotEmpty
+    @NotNull
     @Column(name = "esrb_rating")
     @Length(max = 50, min = 1)
     private int esrbRating;
@@ -28,14 +29,14 @@ public class Game {
     @Length(max = 255, min = 1)
     private String description;
 
-    @NotEmpty
+    @NotNull
    private BigDecimal price;
 
     @NotEmpty
     @Length(max = 50, min = 1)
     private String studio;
 
-    @NotEmpty
+    @NotNull
     private int quantity;
 
     public Game(){}

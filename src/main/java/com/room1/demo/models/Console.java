@@ -4,6 +4,8 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -30,13 +32,13 @@ public class Console {
     @Length(max =20)
     private String processor;
 
-    @NotEmpty
+    @NotNull
     private BigDecimal price;
 
 
 
 
-    @NotEmpty
+    @NotNull
     private int quantity;
 
     public Console() {}
