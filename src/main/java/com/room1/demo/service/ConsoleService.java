@@ -28,7 +28,7 @@ public class ConsoleService {
         this.consoleRepository = consoleRepository;
     }
 
-    //@Transactional
+    @Transactional
     public ConsoleViewModel saveConsole(ConsoleViewModel viewModel){
         Console console = new Console();
         console.setManufacturer(viewModel.getManufacturer());
@@ -42,10 +42,7 @@ public class ConsoleService {
 
         viewModel.setId(console.getConsoleId());
 
-
-
         return viewModel;
-
 
 
     }
@@ -95,7 +92,8 @@ public class ConsoleService {
     @Transactional
     public void updateConsole(ConsoleViewModel viewModel) {
 
-        // Update the album information
+
+
         Console console = new Console();
         console.setManufacturer(viewModel.getManufacturer());
         console.setModel(viewModel.getModel());

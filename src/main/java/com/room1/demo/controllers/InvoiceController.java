@@ -10,8 +10,10 @@ import javax.validation.Valid;
 import java.util.List;
 
 
+
 @RestController
-   public class InvoiceController {
+public class InvoiceController {
+
    @Autowired   
    InvoiceService invoiceService;
 
@@ -32,7 +34,6 @@ import java.util.List;
 
     @DeleteMapping("/invoices/{id}")
     public void deleteInvoice(@PathVariable int id) { invoiceService.removeInvoice(id); }
-
 
 }
 

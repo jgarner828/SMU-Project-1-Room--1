@@ -14,11 +14,11 @@ public class SalesTaxRate {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-  //  @NotEmpty
-  //  @Length(max = 2, min = 2)
+    @NotEmpty
+    @Length(max = 2, min = 2)
     private String state;
 
-   // @NotEmpty
+    @NotEmpty
     private double rate;
 
     public SalesTaxRate() {}

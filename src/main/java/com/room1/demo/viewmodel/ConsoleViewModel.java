@@ -8,24 +8,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class ConsoleViewModel {
+
     private int id;
-
     private String model;
-
     private String manufacturer;
-
     private String memoryAmount;
-
     private String processor;
-
-
     private BigDecimal price;
-
     private int quantity;
-
     private List<Game> games;
-
-
 
 
     public int getId() {

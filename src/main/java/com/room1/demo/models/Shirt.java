@@ -37,6 +37,14 @@ public class Shirt {
 
     public Shirt(){}
 
+    public Shirt(String size, String color, String description, BigDecimal price, int quantity) {
+        this.size = size;
+        this.color = color;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
     public Shirt(int id, String size, String color, String description, BigDecimal price, int quantity) {
         this.id = id;
         this.size = size;

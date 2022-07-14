@@ -4,7 +4,7 @@ import com.room1.demo.models.Invoice;
 import com.room1.demo.repositories.InvoiceRepository;
 import com.room1.demo.viewmodel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -12,9 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Component
+@Service
 public class InvoiceService {
 
+    @Autowired
     private InvoiceRepository invoiceRepository;
 
     @Autowired
