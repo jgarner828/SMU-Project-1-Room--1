@@ -1,7 +1,9 @@
 package com.room1.demo.service;
 
 import com.room1.demo.models.Console;
+import com.room1.demo.models.Game;
 import com.room1.demo.models.Invoice;
+import com.room1.demo.models.Shirt;
 import com.room1.demo.repositories.*;
 import com.room1.demo.viewmodel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class InvoiceService {
     private ConsoleRepository consoleRepository;
     @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    private ShirtRepository shirtRepository;
 
     @Autowired
     private ProcessingFeeRepository processingFeeRepository;
@@ -60,7 +65,7 @@ public class InvoiceService {
     }
 
 
-    public InvoiceViewModel findInvoice(int id)   {
+    public InvoiceViewModel findInvoice(int id) {
         Optional<Invoice> invoice = invoiceRepository.findById(id);
 
         return invoice.isPresent() ? buildInvoiceViewModel(invoice.get()) : null;
@@ -71,14 +76,14 @@ public class InvoiceService {
         List<Invoice> invoiceList = invoiceRepository.findAll();
         List<InvoiceViewModel> ivmList = new ArrayList<>();
 
-        for(Invoice invoice : invoiceList) {
+        for (Invoice invoice : invoiceList) {
             InvoiceViewModel ivm = buildInvoiceViewModel(invoice);
             ivmList.add(ivm);
         }
 
         return ivmList;
     }
-    
+
     @Transactional
     public void updateInvoice(InvoiceViewModel viewModel) {
         Invoice i = new Invoice();
@@ -125,49 +130,83 @@ public class InvoiceService {
 
     }
 
-    public InvoiceViewModel purchaseOrder(@RequestBody InvoiceViewModel invoice){
+    public InvoiceViewModel purchaseOrder(@RequestBody InvoiceViewModel invoice) {
 
         InvoiceViewModel returnVal = new InvoiceViewModel();
         returnVal.setItemType(invoice.getItemType());
         returnVal.setItemId(invoice.getItemId());
         returnVal.setQuantity(invoice.getQuantity());
 
-        if(returnVal.getItemType().equals("console")){
+        if (returnVal.getItemType().equals("console")) {
 
-            if(returnVal.getItemId()!= null){
+            if (returnVal.getItemId() != null) {
                 Optional<Console> consoleReturnVal = consoleRepository.findById(returnVal.getId());
 
                 returnVal.setUnitPrice(consoleReturnVal.get().getPrice());
 
-                    if(consoleReturnVal.get().getQuantity()>= returnVal.getQuantity()){
-                        returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(consoleReturnVal.get().getPrice()));
-                        String customerState = invoice.getState();
-                        double taxRate = salesTaxRateRepository.findTaxRateByState(customerState);
-                        returnVal.setTax();
+                if (consoleReturnVal.get().getQuantity() >= returnVal.getQuantity()) {
+                    returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(consoleReturnVal.get().getPrice()));
+                    String customerState = invoice.getState();
+                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).getRate();
+                    returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
+                    returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
+                    return returnVal;
 
-                    }
+                }
                 throw new IllegalArgumentException();
 
             }
             throw new IllegalArgumentException();
 
 
-
-
-
-
-        }else if(invoice.getItemType()=="game"){
+        } else if (invoice.getItemType().equals("game")) {
             returnVal.setItemType("game");
+            if (returnVal.getItemId() != null) {
+                Optional<Game> gameReturnVal = gameRepository.findById(returnVal.getId());
+
+                returnVal.setUnitPrice(gameReturnVal.get().getPrice());
+
+                if (gameReturnVal.get().getQuantity() >= returnVal.getQuantity()) {
+                    returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(gameReturnVal.get().getPrice()));
+                    String customerState = invoice.getState();
+                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).getRate();
+                    returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
+                    returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
+                    return returnVal;
+
+                }
+                throw new IllegalArgumentException();
+
+            }
+            throw new IllegalArgumentException();
 
 
-        }else if (invoice.getItemType()=="shirt"){
+        } else if (invoice.getItemType() == "shirt") {
             returnVal.setItemType("shirt");
 
-        }else {
-            System.out.println("error");//throw error
-        }
+            if (returnVal.getItemId() != null) {
+                Optional<Shirt> shirtReturnVal = shirtRepository.findById(returnVal.getId());
 
-        return null;
+                returnVal.setUnitPrice(shirtReturnVal.get().getPrice());
+
+                if (shirtReturnVal.get().getQuantity() >= returnVal.getQuantity()) {
+                    returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(shirtReturnVal.get().getPrice()));
+                    String customerState = invoice.getState();
+                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).getRate();
+                    returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
+                    returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
+                    return returnVal;
+
+                }
+                throw new IllegalArgumentException();
+
+            }
+            throw new IllegalArgumentException();
+
+
+        } else {
+            throw new IllegalArgumentException();
+        }
 
 
     }
