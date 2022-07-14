@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,25 +21,25 @@ public class ProcessingFeeController {
 
     @GetMapping("/processingfees/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProcessingFee getProcessingFeeById(@PathVariable int id){
+    public ProcessingFee getProcessingFeeById(@PathVariable @Valid int id){
         return processingFeeService.getProcessingFeeById(id);
     }
 
     @PostMapping("/processingfees")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addProcessingFee(@RequestBody ProcessingFee processingFee){
+    public void addProcessingFee(@RequestBody @Valid ProcessingFee processingFee){
         processingFeeService.addProcessingFee(processingFee);
     }
 
     @PutMapping("/processingfees")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateProcessingFee(@RequestBody ProcessingFee processingFee){
+    public void updateProcessingFee(@RequestBody @Valid ProcessingFee processingFee){
          processingFeeService.updateProcessingFee(processingFee);
     }
 
     @DeleteMapping ("/processingfees/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteProcessingFee(@PathVariable int id){
+    public void deleteProcessingFee(@PathVariable @Valid int id){
         processingFeeService.deleteProcessingFeeById(id);
     }
 

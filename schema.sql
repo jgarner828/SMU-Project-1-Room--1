@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 --create schema if not exists game_store;
 --use game_store;
 --
@@ -62,6 +63,9 @@
 --    total decimal(5,2) not null
 --);
 =======
+=======
+
+>>>>>>> 4f60f57c4e257c890979b2839736902bf7f879a5
 drop schema if exists game_store;
 create schema if not exists game_store;
 use game_store;
@@ -184,4 +188,8 @@ insert into processing_fee (product_type, fee) values
 ('Consoles', 14.99),
 ('T-Shirts', 1.98),
 ('Games', 1.49);
+<<<<<<< HEAD
 >>>>>>> 60131a07ae91d77d420629e654c39340d145804f
+=======
+
+>>>>>>> 4f60f57c4e257c890979b2839736902bf7f879a5
