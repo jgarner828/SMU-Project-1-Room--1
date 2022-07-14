@@ -3,6 +3,7 @@ package com.room1.demo.viewmodel;
 import java.util.Objects;
 
 public class GameViewModel {
+
     private int id;
     private String title;
     private int esrbRating;

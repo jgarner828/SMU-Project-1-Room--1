@@ -42,10 +42,7 @@ public class ConsoleService {
 
         viewModel.setId(console.getConsoleId());
 
-
-
         return viewModel;
-
 
 
     }

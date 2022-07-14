@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @Service
 public class SalesTaxRateService {
+
         @Autowired
         private SalesTaxRateRepository salesTaxRateRepository;
 
@@ -28,7 +29,6 @@ public class SalesTaxRateService {
             }
         }
 
-
         public void addSalesTaxRate(SalesTaxRate salesTaxRate) {
            try {
                 salesTaxRateRepository.save(salesTaxRate);
@@ -36,7 +36,6 @@ public class SalesTaxRateService {
                 e.getMessage();
             }
         }
-
 
         public void updateSalesTaxRate(SalesTaxRate salesTaxRate) {
             salesTaxRateRepository.save(salesTaxRate);
@@ -46,8 +45,7 @@ public class SalesTaxRateService {
             salesTaxRateRepository.deleteById(id);
         }
 
-
-    public List<SalesTaxRate>  getAllSalesTaxRateByState(String state) {
+        public List<SalesTaxRate>  getAllSalesTaxRateByState(String state) {
           return salesTaxRateRepository.findAllCustomersByState(state);
     }
 }

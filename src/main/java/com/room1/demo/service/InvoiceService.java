@@ -15,6 +15,7 @@ import java.util.Optional;
 @Service
 public class InvoiceService {
 
+    @Autowired
     private InvoiceRepository invoiceRepository;
 
     @Autowired

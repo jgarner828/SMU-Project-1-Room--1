@@ -97,7 +97,7 @@ public class ShirtService {
 
     }
 
-        private ShirtViewModel buildShirtViewModel(Shirt shirt) {
+    private ShirtViewModel buildShirtViewModel(Shirt shirt) {
 
         ShirtViewModel ivm = new ShirtViewModel();
         ivm.setId(shirt.getId());

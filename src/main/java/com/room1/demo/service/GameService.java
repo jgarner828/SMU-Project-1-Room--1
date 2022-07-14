@@ -10,30 +10,20 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+
 @Service
 public class GameService {
-    private GameRepository gameRepository;
 
     @Autowired
+    private GameRepository gameRepository;
 
+
+    @Autowired
     public GameService(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
     }
 
-    @Transactional
-    public GameViewModel saveGame(GameViewModel viewModel) {
-    Game g = new Game();
-    g.setTitle(viewModel.getTitle());
-    g.setEsrbRating(viewModel.getEsrbRating());
-    g.setDescription(viewModel.getDescription());
-    g.setPrice(viewModel.getPrice());
-    g.setStudio(viewModel.getStudio());
-    g.setQuantity(viewModel.getQuantity());
-
-    viewModel.setId(g.getGameId());
-
-    return viewModel;
-    }
 
     public GameViewModel findGame(int id) {
 
@@ -41,24 +31,6 @@ public class GameService {
         Optional<Game> game = gameRepository.findById(id);
 
         return game.isPresent() ? buildGameViewModel(game.get()) : null;
-    }
-
-    private GameViewModel buildGameViewModel(Game game) {
-
-
-        Optional<Game> artist = gameRepository.findById(game.getGameId());
-
-
-        // Assemble the GameViewModel
-        GameViewModel gvm = new GameViewModel();
-        gvm.setId(game.getGameId());
-        gvm.setTitle(game.getTitle());
-        gvm.setEsrbRating(game.getEsrbRating());
-        gvm.setDescription(game.getDescription());
-        gvm.setPrice(game.getPrice());
-        gvm.setQuantity(game.getQuantity());
-
-        return gvm;
     }
 
     public List<GameViewModel> findAllGames() {
@@ -73,6 +45,21 @@ public class GameService {
         }
 
         return gvmList;
+    }
+
+    @Transactional
+    public GameViewModel saveGame(GameViewModel viewModel) {
+        Game g = new Game();
+        g.setTitle(viewModel.getTitle());
+        g.setEsrbRating(viewModel.getEsrbRating());
+        g.setDescription(viewModel.getDescription());
+        g.setPrice(viewModel.getPrice());
+        g.setStudio(viewModel.getStudio());
+        g.setQuantity(viewModel.getQuantity());
+
+        viewModel.setId(g.getGameId());
+
+        return viewModel;
     }
 
 
@@ -91,11 +78,32 @@ public class GameService {
         gameRepository.save(g);
     }
 
+
     @Transactional
     public void deleteGame(int id) {
 
         gameRepository.deleteById(id);
 
+    }
+
+
+
+    private GameViewModel buildGameViewModel(Game game) {
+
+
+        Optional<Game> artist = gameRepository.findById(game.getGameId());
+
+
+        // Assemble the GameViewModel
+        GameViewModel gvm = new GameViewModel();
+        gvm.setId(game.getGameId());
+        gvm.setTitle(game.getTitle());
+        gvm.setEsrbRating(game.getEsrbRating());
+        gvm.setDescription(game.getDescription());
+        gvm.setPrice(game.getPrice());
+        gvm.setQuantity(game.getQuantity());
+
+        return gvm;
     }
 
 }
