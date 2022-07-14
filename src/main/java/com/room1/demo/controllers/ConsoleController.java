@@ -2,7 +2,6 @@ package com.room1.demo.controllers;
 
 import com.room1.demo.models.Console;
 import com.room1.demo.service.ConsoleService;
-import com.room1.demo.viewmodel.ConsoleViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,25 +16,23 @@ public class ConsoleController {
 
     @GetMapping("/consoles")
     @ResponseStatus(HttpStatus.OK)
-    public List<ConsoleViewModel> getConsoles(){
+    public List<Console> getConsoles(){
         return consoleService.findAllConsoles();
     }
 
     @GetMapping("/consoles/{id}")
-    public ConsoleViewModel getConsoleById(@PathVariable int id) {
+    public Console getConsoleById(@PathVariable int id) {
         return consoleService.findConsoleById(id);
     }
 
     @PostMapping("/consoles")
     @ResponseStatus(HttpStatus.CREATED)
-    public ConsoleViewModel addConsole(@RequestBody  @Valid ConsoleViewModel consoleviewModel) {
-        return consoleService.saveConsole(consoleviewModel);
-    }
+    public Console addConsole(@RequestBody  @Valid Console console) { return consoleService.saveConsole(console);  }
 
     @PutMapping("/consoles")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateConsole(@RequestBody @Valid ConsoleViewModel consoleViewModel) {
-        consoleService.updateConsole(consoleViewModel);
+    public void updateConsole(@RequestBody @Valid Console console) {
+        consoleService.updateConsole(console);
     }
 
     @DeleteMapping("/consoles/{id}")
