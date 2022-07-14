@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+
+
 @RestController
 public class InvoiceController {
 
    @Autowired   
    InvoiceService invoiceService;
-
 
     @GetMapping("/invoices")
     public List<InvoiceViewModel> getAllInvoices() {
@@ -34,8 +35,6 @@ public class InvoiceController {
     @DeleteMapping("/invoices/{id}")
     public void deleteInvoice(@PathVariable int id) { invoiceService.removeInvoice(id); }
 
-
-
-
 }
+
 

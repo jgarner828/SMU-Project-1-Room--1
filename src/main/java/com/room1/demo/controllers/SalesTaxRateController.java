@@ -1,15 +1,12 @@
 package com.room1.demo.controllers;
-
-import com.room1.demo.models.ProcessingFee;
 import com.room1.demo.models.SalesTaxRate;
-import com.room1.demo.service.ProcessingFeeService;
 import com.room1.demo.service.SalesTaxRateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class SalesTaxRateController {
@@ -23,13 +20,13 @@ public class SalesTaxRateController {
 
     @GetMapping("/salestaxrate/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public SalesTaxRate getSalesTaxRateById(@PathVariable int id){
+    public SalesTaxRate getSalesTaxRateById(@PathVariable @Valid int id){
         return salesTaxRateService.getSalesTaxRateById(id);
     }
 
     @GetMapping("/salestaxrate/state/{state}")
     @ResponseStatus(HttpStatus.OK)
-    public List<SalesTaxRate> getAllSalesTaxRateByState(@PathVariable String state){
+    public List<SalesTaxRate> getAllSalesTaxRateByState(@PathVariable @Valid String state){
         return salesTaxRateService.getAllSalesTaxRateByState(state);
     }
 
@@ -41,15 +38,14 @@ public class SalesTaxRateController {
 
     @PutMapping("/salestaxrate")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateProcessingFee(@RequestBody SalesTaxRate salesTaxRate){
+    public void updateProcessingFee(@RequestBody @Valid SalesTaxRate salesTaxRate){
         salesTaxRateService.updateSalesTaxRate(salesTaxRate);
     }
 
     @DeleteMapping ("/salestaxrate/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteProcessingFee(@PathVariable int id){
+    public void deleteProcessingFee(@PathVariable @Valid int id){
         salesTaxRateService.deleteSalesTaxRate(id);
     }
-
 
 }
