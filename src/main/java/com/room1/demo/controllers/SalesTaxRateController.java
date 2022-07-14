@@ -1,8 +1,5 @@
 package com.room1.demo.controllers;
-
-import com.room1.demo.models.ProcessingFee;
 import com.room1.demo.models.SalesTaxRate;
-import com.room1.demo.service.ProcessingFeeService;
 import com.room1.demo.service.SalesTaxRateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class SalesTaxRateController {
@@ -36,7 +32,7 @@ public class SalesTaxRateController {
 
     @PostMapping("/salestaxrate")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addSalesTaxRate(@RequestBody @Valid SalesTaxRate salesTaxRate){
+    public void addSalesTaxRate(@RequestBody SalesTaxRate salesTaxRate){
         salesTaxRateService.addSalesTaxRate(salesTaxRate);
     }
 

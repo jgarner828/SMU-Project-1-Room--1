@@ -1,5 +1,4 @@
 package com.room1.demo.controllers;
-
 import com.room1.demo.models.ProcessingFee;
 import com.room1.demo.service.ProcessingFeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ public class ProcessingFeeController {
     @GetMapping("/processingfees")
     @ResponseStatus(HttpStatus.OK)
     public List<ProcessingFee> getallprocessingfees() {
-      return processingFeeService.getAllProcessingFees();
+        return processingFeeService.getAllProcessingFees();
     }
 
     @GetMapping("/processingfees/{id}")
@@ -34,7 +33,7 @@ public class ProcessingFeeController {
     @PutMapping("/processingfees")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateProcessingFee(@RequestBody @Valid ProcessingFee processingFee){
-         processingFeeService.updateProcessingFee(processingFee);
+        processingFeeService.updateProcessingFee(processingFee);
     }
 
     @DeleteMapping ("/processingfees/{id}")
@@ -42,5 +41,4 @@ public class ProcessingFeeController {
     public void deleteProcessingFee(@PathVariable @Valid int id){
         processingFeeService.deleteProcessingFeeById(id);
     }
-
 }
