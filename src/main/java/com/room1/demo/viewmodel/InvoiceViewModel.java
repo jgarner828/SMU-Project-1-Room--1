@@ -1,10 +1,15 @@
 package com.room1.demo.viewmodel;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class InvoiceViewModel {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String name;
     private String street;
@@ -21,8 +26,7 @@ public class InvoiceViewModel {
     private BigDecimal total;
 
 
-    public InvoiceViewModel(int id, String name, String street, String city, String state, String zipcode, String itemType, int itemId, BigDecimal unitPrice, int quantity, BigDecimal subtotal, BigDecimal tax, BigDecimal processingFee, BigDecimal total) {
-        this.id = id;
+    public InvoiceViewModel( String name, String street, String city, String state, String zipcode, String itemType, int itemId, BigDecimal unitPrice, int quantity, BigDecimal subtotal, BigDecimal tax, BigDecimal processingFee, BigDecimal total) {
         this.name = name;
         this.street = street;
         this.city = city;

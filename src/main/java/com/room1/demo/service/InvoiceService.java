@@ -142,12 +142,21 @@ public class InvoiceService {
         returnVal.setItemType(invoice.getItemType());
         returnVal.setItemId(invoice.getItemId());
         returnVal.setQuantity(invoice.getQuantity());
+        returnVal.setId(invoice.getId());
+
+
+
 
         if (returnVal.getItemType().equals("console")) {
 
+
             if (returnVal.getItemId()!= 0) {
-                Optional<Console> consoleReturnVal = consoleRepository.findById(returnVal.getId());
-//                returnVal.setItemId(consoleReturnVal.get().getConsoleId());
+                Optional<Console> consoleReturnVal = consoleRepository.findById(returnVal.getItemId());
+                if (consoleReturnVal.isPresent()) {
+                    Console tempCon = consoleReturnVal.get();
+                } else {
+                    throw new IllegalArgumentException("Requested item is unavailable.");
+                }
 
                 returnVal.setUnitPrice(consoleReturnVal.get().getPrice());
 
@@ -166,10 +175,18 @@ public class InvoiceService {
             throw new IllegalArgumentException();
 
 
-        } else if (invoice.getItemType().equals("game")) {
+        }
+
+        else if (returnVal.getItemType().equals("game")) {
             returnVal.setItemType("game");
             if (returnVal.getItemId() != 0) {
-                Optional<Game> gameReturnVal = gameRepository.findById(returnVal.getId());
+                Optional<Game> gameReturnVal = gameRepository.findById(returnVal.getItemId());
+
+                if (gameReturnVal.isPresent()) {
+                    Game tempCon = gameReturnVal.get();
+                } else {
+                    throw new IllegalArgumentException("Requested item is unavailable.");
+                }
 
                 returnVal.setUnitPrice(gameReturnVal.get().getPrice());
 
@@ -185,16 +202,22 @@ public class InvoiceService {
                 throw new IllegalArgumentException();
 
             }
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("area 2");
 
 
-        } else if (invoice.getItemType() == "shirt") {
-            returnVal.setItemType("shirt");
+        }
+
+        else if (returnVal.getItemType().equals("shirts")) {
 
             if (returnVal.getItemId() != 0) {
-                Optional<Shirt> shirtReturnVal = shirtRepository.findById(returnVal.getId());
-
+                Optional<Shirt> shirtReturnVal = shirtRepository.findById(returnVal.getItemId());
+                if (shirtReturnVal.isPresent()) {
+                    Shirt tempCon = shirtReturnVal.get();
+                } else {
+                    throw new IllegalArgumentException("Requested item is unavailable.");
+                }
                 returnVal.setUnitPrice(shirtReturnVal.get().getPrice());
+                System.out.println(returnVal.toString());
 
                 if (shirtReturnVal.get().getQuantity() >= returnVal.getQuantity()) {
                     returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(shirtReturnVal.get().getPrice()));
@@ -203,16 +226,17 @@ public class InvoiceService {
                     returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
                     returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
                     return returnVal;
-
                 }
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("area 3");
 
             }
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("area 4");
 
 
-        } else {
-            throw new IllegalArgumentException();
+        }
+
+        else {
+            throw new IllegalArgumentException(returnVal.toString());
         }
 
 
