@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -14,31 +15,10 @@ public class ProcessingFeeController {
     private ProcessingFeeService processingFeeService;
     @GetMapping("/processingfees")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProcessingFee> getallprocessingfees() {
-        return processingFeeService.getAllProcessingFees();
+    public List<ProcessingFee> getallprocessingfees(@PathParam("type") String type) {
+        if (type == null) { return processingFeeService.getAllProcessingFees(); }
+        else return processingFeeService.findProcessingFeeByProductType(type);
     }
 
-    @GetMapping("/processingfees/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ProcessingFee getProcessingFeeById(@PathVariable @Valid int id){
-        return processingFeeService.getProcessingFeeById(id);
-    }
 
-    @PostMapping("/processingfees")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addProcessingFee(@RequestBody @Valid ProcessingFee processingFee){
-        processingFeeService.addProcessingFee(processingFee);
-    }
-
-    @PutMapping("/processingfees")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateProcessingFee(@RequestBody @Valid ProcessingFee processingFee){
-        processingFeeService.updateProcessingFee(processingFee);
-    }
-
-    @DeleteMapping ("/processingfees/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteProcessingFee(@PathVariable @Valid int id){
-        processingFeeService.deleteProcessingFeeById(id);
-    }
 }

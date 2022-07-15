@@ -22,7 +22,6 @@ public class Game {
 
     @NotNull
     @Column(name = "esrb_rating")
-    @Length(max = 50, min = 1)
     private int esrbRating;
 
     @NotEmpty

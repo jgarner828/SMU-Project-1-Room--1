@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -17,30 +18,25 @@ public class GameController {
 
     @GetMapping("/games")
     @ResponseStatus(HttpStatus.OK)
-    public List<Game> getGames(){
-        return gameService.findAllGames();
+    public List<Game> getGames(@PathParam("studio") String studio,
+                               @PathParam("esrb") Integer esrb,
+                               @PathParam("title") String title){
+        if (studio==null && esrb == null && title==null) {
+            return gameService.findAllGames();
+        } else if(studio==null && esrb == null){
+            return gameService.findGamesByTitle(title);
+        }else if(studio==null && title == null){
+            return gameService.findGamesByEsrbRating(esrb);
+        } else if(esrb==null && title == null) {
+            return gameService.findGamesByStudio(studio);
+        }
+        return null;
     }
 
     @GetMapping("/games/{id}")
     public Game getGameById(@PathVariable int id) {
         return gameService.findGame(id);
     }
-
-    @GetMapping("/games/{studio}")
-    public List<Game> findGamesByStudio(@PathVariable String studio) {
-        return gameService.findGamesByStudio(studio);
-    }
-
-    @GetMapping("/games/{esrb}")
-    public List<Game> findGamesByEsrbRating(@PathVariable String esrb) {
-        return gameService.findGamesByStudio(esrb);
-    }
-
-    @GetMapping("/games/{title}")
-    public List<Game> findGamesByTitle(@PathVariable String title) {
-        return gameService.findGamesByStudio(title);
-    }
-
 
 
     @PostMapping("/games")

@@ -4,6 +4,9 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -29,10 +32,10 @@ public class Shirt {
     @Length(max =255)
     private String description;
 
-    @NotEmpty
+    @NotNull
     private BigDecimal price;
 
-    @NotEmpty
+    @NotNull
     private int quantity;
 
     public Shirt(){}

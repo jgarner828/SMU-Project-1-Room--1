@@ -133,6 +133,12 @@ public class InvoiceService {
     public InvoiceViewModel purchaseOrder(@RequestBody InvoiceViewModel invoice) {
 
         InvoiceViewModel returnVal = new InvoiceViewModel();
+        returnVal.setName(invoice.getName());
+        returnVal.setStreet(invoice.getStreet());
+        returnVal.setState(invoice.getState());
+        returnVal.setCity(invoice.getCity());
+        returnVal.setZipcode(invoice.getZipcode());
+        returnVal.setUnitPrice(invoice.getUnitPrice());
         returnVal.setItemType(invoice.getItemType());
         returnVal.setItemId(invoice.getItemId());
         returnVal.setQuantity(invoice.getQuantity());
@@ -148,7 +154,7 @@ public class InvoiceService {
                 if (consoleReturnVal.get().getQuantity() >= returnVal.getQuantity()) {
                     returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(consoleReturnVal.get().getPrice()));
                     String customerState = invoice.getState();
-                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).getRate();
+                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
                     returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
                     returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
                     return returnVal;
@@ -170,7 +176,7 @@ public class InvoiceService {
                 if (gameReturnVal.get().getQuantity() >= returnVal.getQuantity()) {
                     returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(gameReturnVal.get().getPrice()));
                     String customerState = invoice.getState();
-                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).getRate();
+                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
                     returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
                     returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
                     return returnVal;
@@ -193,7 +199,7 @@ public class InvoiceService {
                 if (shirtReturnVal.get().getQuantity() >= returnVal.getQuantity()) {
                     returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(shirtReturnVal.get().getPrice()));
                     String customerState = invoice.getState();
-                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).getRate();
+                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
                     returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
                     returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
                     return returnVal;

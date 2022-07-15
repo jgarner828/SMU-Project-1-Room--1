@@ -18,26 +18,7 @@ public class ProcessingFeeService {
         return processingFeeRepository.findAll();
     }
 
-    public ProcessingFee getProcessingFeeById(int id) {
-        Optional<ProcessingFee> val = processingFeeRepository.findById(id);
-        if (val.isPresent()) {
-            return val.get();
-        } else {
-            return null;
-        }
-    }
+    public List<ProcessingFee> findProcessingFeeByProductType(String type) { return processingFeeRepository.findProcessingFeeByProductType(type); }
 
-
-    public void addProcessingFee(ProcessingFee processingFee) {
-        processingFeeRepository.save(processingFee);
-    }
-
-    public void updateProcessingFee(ProcessingFee processingFee) {
-        processingFeeRepository.save(processingFee);
-    }
-
-    public void deleteProcessingFeeById(int id) {
-        processingFeeRepository.deleteById(id);
-    }
 
 }

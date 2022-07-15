@@ -37,6 +37,9 @@ public class ConsoleService {
         return consoleRepository.findAll();
     }
 
+    public List<Console> findAllConsolesByManufacturer(String manufacturer){  return consoleRepository.findConsoleByManufacturer(manufacturer);
+    };
+
     @Transactional
     public Console saveConsole(Console console){
         consoleRepository.save(console);

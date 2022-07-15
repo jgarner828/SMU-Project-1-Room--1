@@ -19,37 +19,8 @@ public class SalesTaxRateService {
         return salesTaxRateRepository.findAll();
     }
 
-    public SalesTaxRate getSalesTaxRateById(int id) {
-        Optional<SalesTaxRate> val = salesTaxRateRepository.findById(id);
-        if (val.isPresent()) {
-            return val.get();
-        } else {
-            return null;
-        }
+    public List<SalesTaxRate> findAllSalesTaxRateByState(String state) {return salesTaxRateRepository.findAllSalesTaxRateByState(state);}
+
     }
-
-
-    public void addSalesTaxRate(SalesTaxRate salesTaxRate) {
-        try {
-            salesTaxRateRepository.save(salesTaxRate);
-        } catch (Exception e) {
-            e.getMessage();
-        }
-    }
-
-
-    public void updateSalesTaxRate(SalesTaxRate salesTaxRate) {
-        salesTaxRateRepository.save(salesTaxRate);
-    }
-
-    public void deleteSalesTaxRate(int id) {
-        salesTaxRateRepository.deleteById(id);
-    }
-
-
-    public SalesTaxRate  getSalesTaxRateByState(String state) {
-        return salesTaxRateRepository.findAllSalesTaxRateByState(state);
-    }
-}
 
 
