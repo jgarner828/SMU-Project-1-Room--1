@@ -147,7 +147,7 @@ public class InvoiceService {
 
 
 
-        if (returnVal.getItemType().equals("console")) {
+        if (returnVal.getItemType().equals("Consoles")) {
 
 
             if (returnVal.getItemId()!= 0) {
@@ -165,6 +165,7 @@ public class InvoiceService {
                     String customerState = invoice.getState();
                     Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
                     returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
+                    returnVal.setProcessingFee((processingFeeRepository.findProcessingFeeByProductType(returnVal.getItemType()).get(0).getFee()));
                     returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
                     return returnVal;
 
@@ -177,8 +178,8 @@ public class InvoiceService {
 
         }
 
-        else if (returnVal.getItemType().equals("game")) {
-            returnVal.setItemType("game");
+        else if (returnVal.getItemType().equals("Games")) {
+            //returnVal.setItemType("Games");
             if (returnVal.getItemId() != 0) {
                 Optional<Game> gameReturnVal = gameRepository.findById(returnVal.getItemId());
 
@@ -195,6 +196,7 @@ public class InvoiceService {
                     String customerState = invoice.getState();
                     Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
                     returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
+                    returnVal.setProcessingFee((processingFeeRepository.findProcessingFeeByProductType(returnVal.getItemType()).get(0).getFee()));
                     returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
                     return returnVal;
 
@@ -207,7 +209,7 @@ public class InvoiceService {
 
         }
 
-        else if (returnVal.getItemType().equals("shirts")) {
+        else if (returnVal.getItemType().equals("T-Shirts")) {
 
             if (returnVal.getItemId() != 0) {
                 Optional<Shirt> shirtReturnVal = shirtRepository.findById(returnVal.getItemId());
@@ -224,6 +226,7 @@ public class InvoiceService {
                     String customerState = invoice.getState();
                     Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
                     returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
+                   returnVal.setProcessingFee((processingFeeRepository.findProcessingFeeByProductType(returnVal.getItemType()).get(0).getFee()));
                     returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
                     return returnVal;
                 }
