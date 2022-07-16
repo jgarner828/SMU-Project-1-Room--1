@@ -2,6 +2,7 @@ package com.room1.demo.service;
 
 import com.room1.demo.models.ProcessingFee;
 import com.room1.demo.models.SalesTaxRate;
+import com.room1.demo.repositories.GameRepository;
 import com.room1.demo.repositories.ProcessingFeeRepository;
 import com.room1.demo.repositories.SalesTaxRateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,11 @@ import java.util.Optional;
 public class SalesTaxRateService {
     @Autowired
     private SalesTaxRateRepository salesTaxRateRepository;
+
+    @Autowired
+    public SalesTaxRateService(SalesTaxRateRepository salesTaxRateRepository) {
+        this.salesTaxRateRepository = salesTaxRateRepository;
+    }
 
     public List<SalesTaxRate> getAllSalesTaxRate() {
         return salesTaxRateRepository.findAll();
@@ -50,6 +56,7 @@ public class SalesTaxRateService {
     public SalesTaxRate  getSalesTaxRateByState(String state) {
         return salesTaxRateRepository.findAllSalesTaxRateByState(state);
     }
+
 }
 
 
