@@ -14,6 +14,10 @@ public class ProcessingFeeService {
     @Autowired
     private ProcessingFeeRepository processingFeeRepository;
 
+    public ProcessingFeeService(ProcessingFeeRepository processingFeeRepository) {
+        this.processingFeeRepository = processingFeeRepository;
+    }
+
     public List<ProcessingFee> getAllProcessingFees() {
         return processingFeeRepository.findAll();
     }
