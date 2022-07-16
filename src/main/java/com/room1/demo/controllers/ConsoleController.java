@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -16,8 +17,10 @@ public class ConsoleController {
 
     @GetMapping("/consoles")
     @ResponseStatus(HttpStatus.OK)
-    public List<Console> getConsoles(){
-        return consoleService.findAllConsoles();
+    public List<Console> getConsoles(@PathParam("manufacturer") String manufacturer) {
+        if (manufacturer == null) {
+            return consoleService.findAllConsoles();
+        } else return consoleService.findAllConsolesByManufacturer(manufacturer);
     }
 
     @GetMapping("/consoles/{id}")

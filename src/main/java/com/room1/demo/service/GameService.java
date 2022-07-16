@@ -47,5 +47,17 @@ public class GameService {
     @Transactional
     public void deleteGame(int id) {  gameRepository.deleteById(id);  }
 
+    public List<Game> findGamesByStudio(String studio){
+        return gameRepository.findGamesByStudio(studio);
+    }
+    public List<Game> findGamesByEsrbRating(int esrb) {
+        return gameRepository.findGamesByEsrbRating(esrb);
+    }
 
-}
+        public List<Game> findGamesByTitle(String title){
+            return gameRepository.findGamesByTitle(title);
+        }
+    }
+
+
+

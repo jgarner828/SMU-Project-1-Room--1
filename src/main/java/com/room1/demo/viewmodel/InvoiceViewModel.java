@@ -1,10 +1,15 @@
 package com.room1.demo.viewmodel;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class InvoiceViewModel {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String name;
     private String street;
@@ -12,13 +17,47 @@ public class InvoiceViewModel {
     private String state;
     private String zipcode;
     private String itemType;
-    private String itemId;
+    private int itemId;
     private BigDecimal unitPrice;
     private int quantity;
     private BigDecimal subtotal;
     private BigDecimal tax;
     private BigDecimal processingFee;
     private BigDecimal total;
+
+
+    public InvoiceViewModel( String name, String street, String city, String state, String zipcode, String itemType, int itemId, BigDecimal unitPrice, int quantity, BigDecimal subtotal, BigDecimal tax, BigDecimal processingFee, BigDecimal total) {
+        this.name = name;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zipcode = zipcode;
+        this.itemType = itemType;
+        this.itemId = itemId;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.subtotal = subtotal;
+        this.tax = tax;
+        this.processingFee = processingFee;
+        this.total = total;
+    }
+
+
+    public InvoiceViewModel(String name, String street, String city, String state, String zipcode, String itemType, int itemId, BigDecimal unitPrice, int quantity) {
+        this.name = name;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zipcode = zipcode;
+        this.itemType = itemType;
+        this.itemId = itemId;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+    }
+
+    public InvoiceViewModel(){
+
+    }
 
     public int getId() {
         return id;
@@ -76,11 +115,11 @@ public class InvoiceViewModel {
         this.itemType = itemType;
     }
 
-    public String getItemId() {
+    public int getItemId() {
         return itemId;
     }
 
-    public void setItemId(String itemId) {
+    public void setItemId(int itemId) {
         this.itemId = itemId;
     }
 
@@ -137,13 +176,14 @@ public class InvoiceViewModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InvoiceViewModel that = (InvoiceViewModel) o;
-        return id == that.id && quantity == that.quantity && Objects.equals(name, that.name) && Objects.equals(street, that.street) && Objects.equals(city, that.city) && Objects.equals(state, that.state) && Objects.equals(zipcode, that.zipcode) && Objects.equals(itemType, that.itemType) && Objects.equals(itemId, that.itemId) && Objects.equals(unitPrice, that.unitPrice) && Objects.equals(subtotal, that.subtotal) && Objects.equals(tax, that.tax) && Objects.equals(processingFee, that.processingFee) && Objects.equals(total, that.total);
+        return id == that.id && itemId == that.itemId && quantity == that.quantity && Objects.equals(name, that.name) && Objects.equals(street, that.street) && Objects.equals(city, that.city) && Objects.equals(state, that.state) && Objects.equals(zipcode, that.zipcode) && Objects.equals(itemType, that.itemType) && Objects.equals(unitPrice, that.unitPrice) && Objects.equals(subtotal, that.subtotal) && Objects.equals(tax, that.tax) && Objects.equals(processingFee, that.processingFee) && Objects.equals(total, that.total);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, name, street, city, state, zipcode, itemType, itemId, unitPrice, quantity, subtotal, tax, processingFee, total);
     }
+
 
     @Override
     public String toString() {
@@ -155,7 +195,7 @@ public class InvoiceViewModel {
                 ", state='" + state + '\'' +
                 ", zipcode='" + zipcode + '\'' +
                 ", itemType='" + itemType + '\'' +
-                ", itemId='" + itemId + '\'' +
+                ", itemId=" + itemId +
                 ", unitPrice=" + unitPrice +
                 ", quantity=" + quantity +
                 ", subtotal=" + subtotal +

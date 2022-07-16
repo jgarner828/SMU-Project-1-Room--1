@@ -17,6 +17,7 @@ public class InvoiceController {
    @Autowired   
    InvoiceService invoiceService;
 
+
     @GetMapping("/invoices")
     public List<InvoiceViewModel> getAllInvoices() {
         return invoiceService.findAllInvoiceViewModels();
@@ -34,6 +35,10 @@ public class InvoiceController {
 
     @DeleteMapping("/invoices/{id}")
     public void deleteInvoice(@PathVariable int id) { invoiceService.removeInvoice(id); }
+
+    @PostMapping("/purchaseInvoices")
+    @ResponseStatus(HttpStatus.CREATED)
+    public InvoiceViewModel createPurchaseOrder(@RequestBody @Valid InvoiceViewModel viewModel) { return invoiceService.purchaseOrder(viewModel);}
 
 }
 
