@@ -27,7 +27,7 @@ public class SalesTaxRateService {
 
     public List<SalesTaxRate> findAllSalesTaxRateByState(String state) {return salesTaxRateRepository.findAllSalesTaxRateByState(state);}
 
-    }
+
 
 }
 

@@ -6,6 +6,7 @@ import com.room1.demo.repositories.ProcessingFeeRepository;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public class ProcessingFeeServiceTest {
         ProcessingFee processingFee2 = new ProcessingFee();
         processingFee2.setId(2);
         processingFee2.setProductType("Console");
-        processingFee2.setFee(25.55);
+        processingFee2.setFee(BigDecimal.valueOf(25.55));
 
         System.out.println("ProcessingFeeRepository.save(processingFee) will return " + processingFeeRepository.save(processingFee2));
         System.out.println("ProcessingFeeRepository.findById(processingFee) will return " + processingFeeRepository.findById(2));
@@ -45,13 +46,13 @@ public class ProcessingFeeServiceTest {
         ProcessingFee processingFee = new ProcessingFee();
         processingFee.setId(2);
         processingFee.setProductType("Console");
-        processingFee.setFee(25.55);
+        processingFee.setFee(BigDecimal.valueOf(25.55));
 
 
         ProcessingFee processingFee2 = new ProcessingFee();
         processingFee2.setId(2);
         processingFee2.setProductType("Console");
-        processingFee2.setFee(25.55);
+        processingFee2.setFee(BigDecimal.valueOf(25.55));
 
         List<ProcessingFee> inList = new ArrayList<>();
         inList.add(processingFee);

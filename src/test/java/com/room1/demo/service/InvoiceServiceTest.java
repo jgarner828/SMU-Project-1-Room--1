@@ -32,7 +32,7 @@ public class InvoiceServiceTest {
         invoice2.setState("OH");
         invoice2.setZipcode("45238");
         invoice2.setItemType("Game");
-        invoice2.setItemId("22");
+        invoice2.setItemId(Integer.parseInt("22"));
         invoice2.setUnitPrice(new BigDecimal(25.00));
         invoice2.setQuantity(4);
         invoice2.setSubtotal(new BigDecimal(100.00));
@@ -59,7 +59,7 @@ public class InvoiceServiceTest {
         invoice.setState("OH");
         invoice.setZipcode("45238");
         invoice.setItemType("Game");
-        invoice.setItemId("22");
+        invoice.setItemId(Integer.parseInt("22"));
         invoice.setUnitPrice(new BigDecimal(25.00));
         invoice.setQuantity(4);
         invoice.setSubtotal(new BigDecimal(100.00));
@@ -75,7 +75,7 @@ public class InvoiceServiceTest {
         invoice2.setState("OH");
         invoice2.setZipcode("45238");
         invoice2.setItemType("Game");
-        invoice2.setItemId("22");
+        invoice2.setItemId(Integer.parseInt("22"));
         invoice2.setUnitPrice(new BigDecimal(25.00));
         invoice2.setQuantity(4);
         invoice2.setSubtotal(new BigDecimal(100.00));

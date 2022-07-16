@@ -6,6 +6,7 @@ import com.room1.demo.repositories.SalesTaxRateRepository;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +26,7 @@ public class SalesTaxRateServiceTest {
         SalesTaxRate salesTaxRate2 = new SalesTaxRate();
         salesTaxRate2.setId(1);
         salesTaxRate2.setState("OH");
-        salesTaxRate2.setRate(0.049);
+        salesTaxRate2.setRate(BigDecimal.valueOf(0.049));
 
         System.out.println("SalesTaxRateRepository.save(salesTaxRate) will return " + salesTaxRateRepository.save(salesTaxRate2));
         System.out.println("SalesTaxRateRepository.findById(salesTaxRate) will return " + salesTaxRateRepository.findById(1));
@@ -43,13 +44,13 @@ public class SalesTaxRateServiceTest {
         SalesTaxRate salesTaxRate = new SalesTaxRate();
         salesTaxRate.setId(1);
         salesTaxRate.setState("OH");
-        salesTaxRate.setRate(0.049);
+        salesTaxRate.setRate(BigDecimal.valueOf(0.049));
 
 
         SalesTaxRate salesTaxRate2 = new SalesTaxRate();
         salesTaxRate2.setId(1);
         salesTaxRate2.setState("OH");
-        salesTaxRate2.setRate(0.049);
+        salesTaxRate2.setRate(BigDecimal.valueOf(0.049));
 
         List<SalesTaxRate> inList = new ArrayList<>();
         inList.add(salesTaxRate);

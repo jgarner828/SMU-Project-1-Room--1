@@ -6,6 +6,7 @@ import com.room1.demo.repositories.GameRepository;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +29,7 @@ public class GameServiceTest {
         game2.setTitle("Spider-Man");
         game2.setEsrbRating(4);
         game2.setDescription("Action game");
-        game2.setPrice(24.45);
+        game2.setPrice(BigDecimal.valueOf(24.45));
         game2.setStudio("X-Box");
         game2.setQuantity(4);
         System.out.println("GameRepository.save(game) return: " + gameRepository.save(game2));
@@ -48,7 +49,7 @@ public class GameServiceTest {
         game.setTitle("Spider-Man");
         game.setEsrbRating(4);
         game.setDescription("Action game");
-        game.setPrice(24.45);
+        game.setPrice(BigDecimal.valueOf(24.45));
         game.setStudio("X-Box");
         game.setQuantity(4);
 
@@ -57,7 +58,7 @@ public class GameServiceTest {
         game2.setTitle("Spider-Man");
         game2.setEsrbRating(4);
         game2.setDescription("Action game");
-        game2.setPrice(24.45);
+        game2.setPrice(BigDecimal.valueOf(24.45));
         game2.setStudio("X-Box");
         game2.setQuantity(4);
 

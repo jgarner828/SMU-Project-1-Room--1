@@ -163,8 +163,8 @@ public class InvoiceService {
                 if (consoleReturnVal.get().getQuantity() >= returnVal.getQuantity()) {
                     returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(consoleReturnVal.get().getPrice()));
                     String customerState = invoice.getState();
-                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
-                    returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
+                    BigDecimal taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
+                    returnVal.setTax((returnVal.getSubtotal().multiply(taxRate)));
                     returnVal.setProcessingFee((processingFeeRepository.findProcessingFeeByProductType(returnVal.getItemType()).get(0).getFee()));
                     returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
                     return returnVal;
@@ -194,8 +194,8 @@ public class InvoiceService {
                 if (gameReturnVal.get().getQuantity() >= returnVal.getQuantity()) {
                     returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(gameReturnVal.get().getPrice()));
                     String customerState = invoice.getState();
-                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
-                    returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
+                    BigDecimal taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
+                    returnVal.setTax((returnVal.getSubtotal().multiply(taxRate)));
                     returnVal.setProcessingFee((processingFeeRepository.findProcessingFeeByProductType(returnVal.getItemType()).get(0).getFee()));
                     returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
                     return returnVal;
@@ -224,8 +224,8 @@ public class InvoiceService {
                 if (shirtReturnVal.get().getQuantity() >= returnVal.getQuantity()) {
                     returnVal.setSubtotal(BigDecimal.valueOf(returnVal.getQuantity()).multiply(shirtReturnVal.get().getPrice()));
                     String customerState = invoice.getState();
-                    Double taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
-                    returnVal.setTax((returnVal.getSubtotal().multiply(BigDecimal.valueOf(taxRate))));
+                    BigDecimal taxRate = salesTaxRateRepository.findAllSalesTaxRateByState(customerState).get(0).getRate();
+                    returnVal.setTax((returnVal.getSubtotal().multiply(taxRate)));
                    returnVal.setProcessingFee((processingFeeRepository.findProcessingFeeByProductType(returnVal.getItemType()).get(0).getFee()));
                     returnVal.setTotal(returnVal.getTax().add(returnVal.getSubtotal()));
                     return returnVal;
