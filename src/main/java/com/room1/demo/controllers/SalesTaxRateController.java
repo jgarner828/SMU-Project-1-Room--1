@@ -12,9 +12,10 @@ import java.util.List;
 public class SalesTaxRateController {
     @Autowired
     private SalesTaxRateService salesTaxRateService;
+
     @GetMapping("/salestaxrate")
     @ResponseStatus(HttpStatus.OK)
-    public List<SalesTaxRate> getallSalesTaxRate(@PathParam("state") String state) {
+    public List<SalesTaxRate> getAllSalesTaxRate(@PathParam("state") String state) {
         if(state == null) {
             return salesTaxRateService.getAllSalesTaxRate();
         }
