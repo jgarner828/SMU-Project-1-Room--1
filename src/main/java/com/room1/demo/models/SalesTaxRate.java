@@ -4,6 +4,8 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
@@ -18,12 +20,12 @@ public class SalesTaxRate {
     @Length(max = 2, min = 2)
     private String state;
 
-    @NotEmpty
-    private double rate;
+    @NotNull
+    private BigDecimal rate;
 
     public SalesTaxRate() {}
 
-    public SalesTaxRate(int id, String state, double rate) {
+    public SalesTaxRate(int id, String state, BigDecimal rate) {
         this.id = id;
         this.state = state;
         this.rate = rate;
@@ -45,11 +47,11 @@ public class SalesTaxRate {
         this.state = state;
     }
 
-    public double getRate() {
+    public BigDecimal getRate() {
         return rate;
     }
 
-    public void setRate(double rate) {
+    public void setRate(BigDecimal rate) {
         this.rate = rate;
     }
 
@@ -58,7 +60,7 @@ public class SalesTaxRate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SalesTaxRate that = (SalesTaxRate) o;
-        return id == that.id && Double.compare(that.rate, rate) == 0 && Objects.equals(state, that.state);
+        return id == that.id && Objects.equals(state, that.state) && Objects.equals(rate, that.rate);
     }
 
     @Override
