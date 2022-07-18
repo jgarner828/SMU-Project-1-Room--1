@@ -33,6 +33,7 @@ public class GameController {
         return null;
     }
 
+
     @GetMapping("/games/{id}")
     public Game getGameById(@PathVariable int id) {
         return gameService.findGame(id);
