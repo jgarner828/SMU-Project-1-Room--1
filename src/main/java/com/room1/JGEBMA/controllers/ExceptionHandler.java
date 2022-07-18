@@ -1,12 +1,12 @@
 package com.room1.JGEBMA.controllers;
 
 
-<<<<<<< HEAD:src/main/java/com/room1/demo/controllers/ExceptionHandler.java
-import com.room1.demo.errors.CustomErrorResponse;
-import com.room1.demo.errors.NotFoundError;
-=======
+
 import com.room1.JGEBMA.errors.CustomErrorResponse;
->>>>>>> aabfa6aa8c181d8ae9df2b4e72ceef957e61e74d:src/main/java/com/room1/JGEBMA/controllers/ExceptionHandler.java
+
+import com.room1.demo.errors.NotFoundError;
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ResponseStatus;

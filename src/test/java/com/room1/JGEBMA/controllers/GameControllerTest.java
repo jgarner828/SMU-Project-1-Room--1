@@ -19,13 +19,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-<<<<<<< HEAD:src/test/java/com/room1/demo/controllers/GameControllerTest.java
+
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-=======
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
->>>>>>> aabfa6aa8c181d8ae9df2b4e72ceef957e61e74d:src/test/java/com/room1/JGEBMA/controllers/GameControllerTest.java
+
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

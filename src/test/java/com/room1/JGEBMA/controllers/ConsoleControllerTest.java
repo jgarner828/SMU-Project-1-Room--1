@@ -19,13 +19,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-<<<<<<< HEAD:src/test/java/com/room1/demo/controllers/ConsoleControllerTest.java
+
+
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-=======
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
->>>>>>> aabfa6aa8c181d8ae9df2b4e72ceef957e61e74d:src/test/java/com/room1/JGEBMA/controllers/ConsoleControllerTest.java
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -119,10 +120,7 @@ public class ConsoleControllerTest {
 //    @Test
 //    public void ShouldReturn404NotFound() throws Exception{
 //
-//        //Console expectedConsole = new Console(100,"PlayStation Portable","sega","2MB","AMD",new BigDecimal("20.99"),5);
-//        Mockito.when(consoleService.findConsoleById(4));
-//        //String expectedJson = mapper.writeValueAsString(expectedConsole);
-//
+//        Console expectedConsole = new Console(100,"PlayStation Portable","sega","2MB","AMD",new BigDecimal("20.99"),5);
 //        mockMvc.perform(get("/consoles/4")) //Act
 //                .andDo(print())
 //                .andExpect(status().isNotFound());
