@@ -50,6 +50,15 @@ public class Game {
         this.quantity = quantity;
     }
 
+    public Game(String title, int esrbRating, String description, BigDecimal price, String studio, int quantity) {
+        this.title = title;
+        this.esrbRating = esrbRating;
+        this.description = description;
+        this.price = price;
+        this.studio = studio;
+        this.quantity = quantity;
+    }
+
     public int getGameId() {
         return gameId;
     }
