@@ -1,0 +1,971 @@
+openapi: 3.0.1
+info:
+  title: Group 1 SMU Java Project 1 Ephrem B, Justin G, Meron A
+  version: v1.0
+servers:
+  - url: http://localhost:8080
+    description: E-Commerce Store
+paths:
+  /shirts:
+    get:
+      tags:
+        - shirt-controller
+      operationId: getAllShirts
+      parameters:
+        - name: color
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shirt'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    put:
+      tags:
+        - shirt-controller
+      operationId: updateShirt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Shirt'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    post:
+      tags:
+        - shirt-controller
+      operationId: addShirt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Shirt'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Shirt'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+  /invoices:
+    get:
+      tags:
+        - invoice-controller
+      operationId: getAllInvoices
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvoiceViewModel'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    put:
+      tags:
+        - invoice-controller
+      operationId: updateInvoice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceViewModel'
+        required: true
+      responses:
+        '200':
+          description: OK
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    post:
+      tags:
+        - invoice-controller
+      operationId: addInvoice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceViewModel'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InvoiceViewModel'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+  /games:
+    get:
+      tags:
+        - game-controller
+      operationId: getGames
+      parameters:
+        - name: studio
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: esrb
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: title
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    put:
+      tags:
+        - game-controller
+      operationId: updateGame
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Game'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    post:
+      tags:
+        - game-controller
+      operationId: addGame
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Game'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Game'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+  /consoles:
+    get:
+      tags:
+        - console-controller
+      operationId: getConsoles
+      parameters:
+        - name: manufacturer
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Console'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    put:
+      tags:
+        - console-controller
+      operationId: updateConsole
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Console'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    post:
+      tags:
+        - console-controller
+      operationId: addConsole
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Console'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Console'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+  /purchaseInvoices:
+    post:
+      tags:
+        - invoice-controller
+      operationId: createPurchaseOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceViewModel'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InvoiceViewModel'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+  /shirts/{id}:
+    get:
+      tags:
+        - shirt-controller
+      operationId: getShirtById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Shirt'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    delete:
+      tags:
+        - shirt-controller
+      operationId: deleteShirt
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+  /salestaxrate:
+    get:
+      tags:
+        - sales-tax-rate-controller
+      operationId: getAllSalesTaxRate
+      parameters:
+        - name: state
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SalesTaxRate'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+  /processingfees:
+    get:
+      tags:
+        - processing-fee-controller
+      operationId: getallprocessingfees
+      parameters:
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProcessingFee'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+  /invoices/{id}:
+    get:
+      tags:
+        - invoice-controller
+      operationId: getInvoiceById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InvoiceViewModel'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    delete:
+      tags:
+        - invoice-controller
+      operationId: deleteInvoice
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+  /games/{id}:
+    get:
+      tags:
+        - game-controller
+      operationId: getGameById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Game'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    delete:
+      tags:
+        - game-controller
+      operationId: deleteGame
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: No Content
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+  /consoles/{id}:
+    get:
+      tags:
+        - console-controller
+      operationId: getConsoleById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Console'
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+    delete:
+      tags:
+        - console-controller
+      operationId: deleteConsole
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: No Content
+        '301':
+          description: Moved Permanently
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '406':
+          description: Not Acceptable
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CustomErrorResponse'
+components:
+  schemas:
+    CustomErrorResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        status:
+          type: integer
+          format: int32
+        errorCode:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    Shirt:
+      required:
+        - color
+        - description
+        - price
+        - quantity
+        - size
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        size:
+          type: string
+        color:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+          format: int32
+    InvoiceViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
+        itemType:
+          type: string
+        itemId:
+          type: integer
+          format: int32
+        unitPrice:
+          type: number
+        quantity:
+          type: integer
+          format: int32
+        subtotal:
+          type: number
+        tax:
+          type: number
+        processingFee:
+          type: number
+        total:
+          type: number
+    Game:
+      required:
+        - description
+        - esrbRating
+        - gameId
+        - price
+        - quantity
+        - studio
+        - title
+      type: object
+      properties:
+        gameId:
+          type: integer
+          format: int32
+        title:
+          type: string
+        esrbRating:
+          type: integer
+          format: int32
+        description:
+          type: string
+        price:
+          type: number
+        studio:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+    Console:
+      required:
+        - manufacturer
+        - model
+        - price
+        - quantity
+      type: object
+      properties:
+        consoleId:
+          type: integer
+          format: int32
+        model:
+          type: string
+        manufacturer:
+          type: string
+        memoryAmount:
+          type: string
+        processor:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+          format: int32
+    SalesTaxRate:
+      required:
+        - rate
+        - state
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        state:
+          type: string
+        rate:
+          type: number
+    ProcessingFee:
+      required:
+        - productType
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        productType:
+          type: string
+        fee:
+          type: number
