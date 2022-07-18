@@ -1,7 +1,12 @@
 package com.room1.JGEBMA.controllers;
 
 
+<<<<<<< HEAD:src/main/java/com/room1/demo/controllers/ExceptionHandler.java
+import com.room1.demo.errors.CustomErrorResponse;
+import com.room1.demo.errors.NotFoundError;
+=======
 import com.room1.JGEBMA.errors.CustomErrorResponse;
+>>>>>>> aabfa6aa8c181d8ae9df2b4e72ceef957e61e74d:src/main/java/com/room1/JGEBMA/controllers/ExceptionHandler.java
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,6 +37,7 @@ public class ExceptionHandler {
         return responseEntity;
     }
 
+
     @org.springframework.web.bind.annotation.ExceptionHandler(value = {IndexOutOfBoundsException.class})
     @ResponseStatus(HttpStatus.MOVED_PERMANENTLY)
     public ResponseEntity<CustomErrorResponse> handleIndexOutofBounds(IndexOutOfBoundsException e) {
@@ -42,6 +48,7 @@ public class ExceptionHandler {
         return responseEntity;
     }
 
+
     @org.springframework.web.bind.annotation.ExceptionHandler(value = {ArithmeticException.class})
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
     public ResponseEntity<CustomErrorResponse> invalidMath(ArithmeticException e) {
@@ -51,6 +58,17 @@ public class ExceptionHandler {
         ResponseEntity<CustomErrorResponse> responseEntity = new ResponseEntity<>(error, HttpStatus.NOT_ACCEPTABLE);
         return responseEntity;
     }
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = NotFoundError.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<CustomErrorResponse> notFoundException(NotFoundError e) {
+        CustomErrorResponse error = new CustomErrorResponse(HttpStatus.NOT_FOUND.toString(), e.getMessage());
+        error.setStatus((HttpStatus.NOT_FOUND.value()));
+        error.setTimestamp(LocalDateTime.now());
+        ResponseEntity<CustomErrorResponse> responseEntity = new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+        return responseEntity;
+    }
+
+
 
 
 }

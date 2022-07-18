@@ -19,8 +19,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+<<<<<<< HEAD:src/test/java/com/room1/demo/controllers/ConsoleControllerTest.java
+import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+=======
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+>>>>>>> aabfa6aa8c181d8ae9df2b4e72ceef957e61e74d:src/test/java/com/room1/JGEBMA/controllers/ConsoleControllerTest.java
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -81,6 +86,52 @@ public class ConsoleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(expectedJson));
     }
+
+    @Test
+    public void ShouldReturn422UProcessableWhenSearchingConsoleByIdWithAwrongEntryType() throws Exception{
+        mockMvc.perform(get("/consoles/rt")) //Act
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+
+    }
+
+
+    @Test
+    public void ShouldDeleteConsoleById() throws Exception{
+
+
+        mockMvc.perform(delete("/consoles/2")) //Act
+                .andDo(print())
+                .andExpect(status().isNoContent());
+
+    }
+
+    @Test
+    public void ShouldUpdateConsole() throws Exception{
+
+
+        mockMvc.perform(delete("/consoles/2")) //Act
+                .andDo(print())
+                .andExpect(status().isNoContent());
+
+    }
+
+//    @Test
+//    public void ShouldReturn404NotFound() throws Exception{
+//
+//        //Console expectedConsole = new Console(100,"PlayStation Portable","sega","2MB","AMD",new BigDecimal("20.99"),5);
+//        Mockito.when(consoleService.findConsoleById(4));
+//        //String expectedJson = mapper.writeValueAsString(expectedConsole);
+//
+//        mockMvc.perform(get("/consoles/4")) //Act
+//                .andDo(print())
+//                .andExpect(status().isNotFound());
+//
+//    }
+
+
+
+
     @Test
     public void ShouldCreateConsole() throws Exception{
 

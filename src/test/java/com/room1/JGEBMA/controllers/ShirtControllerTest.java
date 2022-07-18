@@ -109,4 +109,12 @@ public class ShirtControllerTest {
                 .andExpect(content().string(expectedJson));
     }
 
+    @Test
+    public void ShouldReturn422UProcessableWhenSearchingShirtByIdWithAwrongEntryType() throws Exception{
+        mockMvc.perform(get("/shirts/rt")) //Act
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+
+    }
+
 }
