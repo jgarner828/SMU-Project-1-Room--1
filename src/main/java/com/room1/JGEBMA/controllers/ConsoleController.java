@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
-@CrossOrigin()
+
 @RestController
 public class ConsoleController {
     @Autowired
@@ -25,21 +25,25 @@ public class ConsoleController {
         } else return consoleService.findAllConsolesByManufacturer(manufacturer);
     }
 
+    @CrossOrigin()
     @GetMapping("/consoles/{id}")
     public Console getConsoleById(@PathVariable int id) {
         return consoleService.findConsoleById(id);
     }
 
+    @CrossOrigin()
     @PostMapping("/consoles")
     @ResponseStatus(HttpStatus.CREATED)
     public Console addConsole(@RequestBody  @Valid Console console) { return consoleService.saveConsole(console);  }
 
+    @CrossOrigin()
     @PutMapping("/consoles")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateConsole(@RequestBody @Valid Console console) {
         consoleService.updateConsole(console);
     }
 
+    @CrossOrigin()
     @DeleteMapping("/consoles/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteConsole(@PathVariable int id) {

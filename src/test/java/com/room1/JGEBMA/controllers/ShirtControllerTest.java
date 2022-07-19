@@ -104,9 +104,12 @@ public class ShirtControllerTest {
         String expectedJson = mapper.writeValueAsString(expectedShirt);
         String inputJson = mapper.writeValueAsString(inputBody);
 
-        mockMvc.perform(post("/shirts") //Act
-                .content(inputJson)
-                .contentType(MediaType.APPLICATION_JSON))
+
+        mockMvc.perform(post("/shirts")
+                        .content(inputJson)
+                        .contentType(MediaType.APPLICATION_JSON))
+                //Act
+
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(content().string(expectedJson));

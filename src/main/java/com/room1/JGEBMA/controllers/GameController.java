@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
-@CrossOrigin()
+
 @RestController
 public class GameController {
 
@@ -35,26 +35,27 @@ public class GameController {
         return null;
     }
 
-
+    @CrossOrigin()
     @GetMapping("/games/{id}")
     public Game getGameById(@PathVariable int id) {
         return gameService.findGame(id);
     }
 
-
+    @CrossOrigin()
     @PostMapping("/games")
     @ResponseStatus(HttpStatus.CREATED)
     public Game addGame(@RequestBody @Valid Game game) {
         return gameService.saveGame(game);
     }
 
-
+    @CrossOrigin()
     @PutMapping("/games")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateGame(@RequestBody @Valid Game game) {
         gameService.updateGame(game);
     }
 
+    @CrossOrigin()
     @DeleteMapping("/games/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteGame(@PathVariable int id) {
