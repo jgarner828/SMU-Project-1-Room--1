@@ -147,6 +147,17 @@ public class GameControllerTest {
 
     }
 
+    @Test
+    public void ShouldReturn404NotFoundForMisSpelledUrl() throws Exception{
+
+
+
+        mockMvc.perform(get("/game/1")) //Act  //miss-spelled url
+                .andDo(print())
+                .andExpect(status().isNotFound());
+
+    }
+
 
 
 }

@@ -117,4 +117,15 @@ public class ShirtControllerTest {
 
     }
 
+    @Test
+    public void ShouldReturn404NotFoundWhenMisSpelledUrlProvided() throws Exception{
+
+
+
+        mockMvc.perform(get("/shirt/1")) //Act  //miss-spelled url
+                .andDo(print())
+                .andExpect(status().isNotFound());
+
+    }
+
 }
