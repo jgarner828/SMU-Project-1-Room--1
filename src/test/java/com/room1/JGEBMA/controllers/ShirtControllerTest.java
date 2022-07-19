@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -99,11 +100,14 @@ public class ShirtControllerTest {
 
         Shirt inputBody = new Shirt("md","White","md white shirt",new BigDecimal("10.99"),5);
         Shirt expectedShirt = new Shirt(1,"md","White","md white shirt",new BigDecimal("10.99"),5);
-        Mockito.when(shirtService.saveShirt(inputBody));
+        Mockito.when(shirtService.saveShirt(inputBody)).thenReturn(expectedShirt);
         String expectedJson = mapper.writeValueAsString(expectedShirt);
         String inputJson = mapper.writeValueAsString(inputBody);
 
-        mockMvc.perform(get("/shirts")) //Act
+        mockMvc.perform(post("/shirts")
+                        .content(inputJson)
+                        .contentType(MediaType.APPLICATION_JSON))
+                //Act
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(content().string(expectedJson));
