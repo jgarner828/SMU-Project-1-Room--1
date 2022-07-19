@@ -107,26 +107,18 @@ public class ConsoleControllerTest {
 
     }
 
+
+
     @Test
-    public void ShouldUpdateConsole() throws Exception{
+    public void ShouldReturn404NotFound() throws Exception{
 
 
-        mockMvc.perform(delete("/consoles/2")) //Act
+
+        mockMvc.perform(get("/consles/1")) //Act  //miss-spelled url
                 .andDo(print())
-                .andExpect(status().isNoContent());
+                .andExpect(status().isNotFound());
 
     }
-
-//    @Test
-//    public void ShouldReturn404NotFound() throws Exception{
-//
-//        Console expectedConsole = new Console(100,"PlayStation Portable","sega","2MB","AMD",new BigDecimal("20.99"),5);
-//        mockMvc.perform(get("/consoles/4")) //Act
-//                .andDo(print())
-//                .andExpect(status().isNotFound());
-//
-//    }
-
 
 
 

@@ -4,9 +4,8 @@ package com.room1.JGEBMA.controllers;
 
 import com.room1.JGEBMA.errors.CustomErrorResponse;
 
-import com.room1.demo.errors.NotFoundError;
 
-
+import com.room1.JGEBMA.errors.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -58,9 +57,10 @@ public class ExceptionHandler {
         ResponseEntity<CustomErrorResponse> responseEntity = new ResponseEntity<>(error, HttpStatus.NOT_ACCEPTABLE);
         return responseEntity;
     }
-    @org.springframework.web.bind.annotation.ExceptionHandler(value = NotFoundError.class)
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<CustomErrorResponse> notFoundException(NotFoundError e) {
+    public ResponseEntity<CustomErrorResponse> notFoundException(NotFoundException e) {
         CustomErrorResponse error = new CustomErrorResponse(HttpStatus.NOT_FOUND.toString(), e.getMessage());
         error.setStatus((HttpStatus.NOT_FOUND.value()));
         error.setTimestamp(LocalDateTime.now());
